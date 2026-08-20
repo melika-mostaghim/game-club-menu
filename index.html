@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منوی گیم کلاب شیراز</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0a0f;
+      --panel: #12111a;
+      --panel-2: #171523;
+      --line: rgba(255, 214, 123, 0.16);
+      --text: #f3ebd7;
+      --muted: #b9ad93;
+      --gold: #e0b15a;
+      --gold-2: #ffcf76;
+      --red: #8f2430;
+      --red-2: #c0474f;
+      --shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --radius: 14px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Vazirmatn", Tahoma, "IRANSans", sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(192, 71, 79, 0.16), transparent 34%),
+        radial-gradient(circle at 15% 20%, rgba(224, 177, 90, 0.12), transparent 20%),
+        radial-gradient(circle at 85% 10%, rgba(224, 177, 90, 0.08), transparent 16%),
+        linear-gradient(180deg, #09080c 0%, #0e0c13 45%, #08070b 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.8;
+      letter-spacing: 0;
+    }
+
+    .wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px 14px 28px;
+    }
+
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(11,10,15,0.96), rgba(11,10,15,0.82));
+      border-bottom: 1px solid rgba(255, 214, 123, 0.12);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.24);
+      margin: -16px -14px 18px;
+    }
+
+    .hero-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 16px 14px 14px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .logo {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(224,177,90,0.2), rgba(143,36,48,0.2)),
+        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+      border: 1px solid rgba(255, 214, 123, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 22px rgba(0,0,0,0.25);
+      font-size: 1.8rem;
+      flex: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.55rem;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .tagline {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .hours {
+      margin-top: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(255, 214, 123, 0.08);
+      color: #f6ddb0;
+      border: 1px solid rgba(255, 214, 123, 0.16);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .filters {
+      margin: 14px 0 18px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter-btn {
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 214, 123, 0.16);
+      background: rgba(18, 17, 26, 0.92);
+      color: var(--text);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-family: inherit;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: 0.2s ease;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+
+    .filter-btn:hover { transform: translateY(-1px); border-color: rgba(224,177,90,0.34); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, rgba(224,177,90,0.28), rgba(143,36,48,0.22));
+      border-color: rgba(224,177,90,0.46);
+      color: #fff6df;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    }
+
+    .section {
+      margin-bottom: 18px;
+      border: 1px solid rgba(255, 214, 123, 0.12);
+      background: linear-gradient(180deg, rgba(18, 17, 26, 0.96), rgba(14, 13, 20, 0.96));
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .section-head {
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid rgba(255, 214, 123, 0.08);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      background:
+        linear-gradient(90deg, rgba(224,177,90,0.08), transparent 50%),
+        linear-gradient(180deg, rgba(255,255,255,0.03), transparent);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 1.08rem;
+      color: #fff0cd;
+    }
+
+    .section-head .hint {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .items {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: start;
+      padding: 12px 12px 11px;
+      border-radius: var(--radius-sm);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.012)),
+        linear-gradient(135deg, rgba(192,71,79,0.05), rgba(224,177,90,0.03));
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.2s ease;
+    }
+
+    .item:hover {
+      border-color: rgba(224,177,90,0.2);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .name {
+      margin: 0;
+      font-size: 1rem;
+      color: #fff8e6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .desc {
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .price {
+      color: var(--gold-2);
+      font-weight: 800;
+      font-size: 1rem;
+      white-space: nowrap;
+      padding-inline-start: 10px;
+    }
+
+    .footer {
+      margin-top: 8px;
+      padding: 16px 14px 18px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 214, 123, 0.12);
+      background: linear-gradient(180deg, rgba(18, 17, 26, 0.94), rgba(13, 12, 18, 0.98));
+      box-shadow: var(--shadow);
+      color: #e9dec6;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 8px;
+      font-size: 0.92rem;
+    }
+
+    .footer strong { color: #fff2cf; }
+    .note {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 214, 123, 0.16);
+      color: #d6c8ab;
+      font-size: 0.9rem;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 480px) {
+      .wrap { padding-inline: 10px; }
+      .hero-inner { padding-inline: 10px; }
+      h1 { font-size: 1.3rem; }
+      .logo { width: 50px; height: 50px; font-size: 1.6rem; }
+      .item { grid-template-columns: 1fr; }
+      .price { padding-inline-start: 0; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="brand-row">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">🎮</div>
+          <div>
+            <h1>گیم کلاب شیراز</h1>
+            <div class="tagline">مرکز بازی مافیا در شیراز</div>
+          </div>
+        </div>
+        <div class="hours">⏰ ساعت کاری: ۱۷:۰۰ تا ۰۲:۰۰</div>
+      </div>
+      <div class="filters" aria-label="فیلتر دسته‌بندی‌ها">
+        <button class="filter-btn active" data-filter="all" aria-pressed="true">همه</button>
+        <button class="filter-btn" data-filter="hot" aria-pressed="false">نوشیدنی گرم</button>
+        <button class="filter-btn" data-filter="cold" aria-pressed="false">نوشیدنی سرد</button>
+        <button class="filter-btn" data-filter="snack" aria-pressed="false">غذاها</button>
+        <button class="filter-btn" data-filter="dessert" aria-pressed="false">تنقلات</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="section" data-section="hot">
+      <div class="section-head">
+        <h2>نوشیدنی گرم</h2>
+      </div>
+      <div class="items">
+        <article class="item"><div><h3 class="name">اسپرسو تک</h3></div><div class="price">۷۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">اسپرسو دبل</h3></div><div class="price">۱۰۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">لاته</h3></div><div class="price">۱۲۰,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">موکا</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">مافیا اسپشیال</h3></div><div class="price">۱۵۵,۰۰۰ تومان</div></article>
+      </div>
+    </section>
+
+    <section class="section" data-section="cold">
+      <div class="section-head">
+        <h2>نوشیدنی سرد</h2>
+      </div>
+      <div class="items">
+        <article class="item"><div><h3 class="name">آیس لته</h3></div><div class="price">۱۳۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">آیس آمریکانو</h3></div><div class="price">۱۵۰,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">موهیتو</h3></div><div class="price">۱۴۰,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">آمریکانو سرد</h3></div><div class="price">۱۱۰,۰۰۰ تومان</div></article>
+      </div>
+    </section>
+
+    <section class="section" data-section="snack">
+      <div class="section-head">
+        <h2>غذاها</h2>
+      </div>
+      <div class="items">
+        <article class="item"><div><h3 class="name">ساندویچ سرد ژامبون گوشت</h3></div><div class="price">۲۶۰,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">ساندویچ کتلت</h3></div><div class="price">۱۸۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">اسنک گوشت و قارچ و پنیر</h3></div><div class="price">۱۸۵,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">اسنک مرغ و قارچ و پنیر</h3></div><div class="price">۱۸۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">سیب زمینی سرخ کرده</h3></div><div class="price">۹۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">لقمه گرم دوپیازه آلو</h3></div><div class="price">۱۱۵,۰۰۰ تومان</div></article>
+      </div>
+    </section>
+
+    <section class="section" data-section="dessert">
+      <div class="section-head">
+        <h2>تنقلات</h2>
+      </div>
+      <div class="items">
+        <article class="item"><div><h3 class="name">کروسان</h3></div><div class="price">۱۴۵,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">نانی شکلاتی</h3></div><div class="price">۱۳۰,۰۰۰ تومان</div></article>
+        <article class="item"><div><h3 class="name">شوکو رول</h3></div><div class="price">۱۵۰,۰۰۰ تومان</div></article>
+		<article class="item"><div><h3 class="name">چوب شور</h3></div><div class="price">۱۳۰,۰۰۰ تومان</div></article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-grid">
+        <div><strong>آدرس: </strong>شیراز، بلوار آزادی، کوچه 21 ، جنب هتل ستارگان، گیم کلاب شیراز</div>
+        <div><strong>تلفن: </strong>09026331048</div>
+        <div><strong>ساعات کاری:</strong> هر روز ۱۷:۰۰ تا ۰۲:۰۰</div>
+        <div><strong>اینستاگرام:</strong> @mafia.shz</div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    (function () {
+      const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+      const sections = Array.from(document.querySelectorAll('.section'));
+
+      function setFilter(filter) {
+        buttons.forEach(btn => {
+          const active = btn.dataset.filter === filter;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-pressed', String(active));
+        });
+
+        sections.forEach(section => {
+          const show = filter === 'all' || section.dataset.section === filter;
+          section.classList.toggle('hidden', !show);
+        });
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => setFilter(btn.dataset.filter));
+      });
+
+      setFilter('all');
+    })();
+  </script>
+</body>
+</html>
